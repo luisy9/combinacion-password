@@ -4,9 +4,16 @@ import { PASSWORD } from './utils/PASSWORD';
 import Confirm from './components/Confirm';
 
 export const App = () => {
-    const [value, setValue] = useState();
-    function checkPassword(secret) {
-        console.log(secret);
+    const [color, setColor] = useState([]);
+    let arrayButtonsSelected = [];
+
+    function checkPassword(secret, index) {
+        // console.log(secret, index)
+        //OK esto esta bien, pero me molaria hacerlo de otra manera!
+        if (!arrayButtonsSelected[index]) { arrayButtonsSelected.push({ [index]: true }) }
+        console.log(arrayButtonsSelected)
+
+        // setColor([...color, { [index]: true }]);
     }
 
     function confirmPassword() {
@@ -19,10 +26,11 @@ export const App = () => {
             <div className="flex justify-center">
                 <div className="grid grid-cols-3">
                     {
-                        PASSWORD.map(e =>
+                        PASSWORD.map((e, index) =>
                             <>
                                 <Buttons secret={e}
-                                    checkPassword={checkPassword} />
+                                    index={index}
+                                    checkPassword={checkPassword} color={color} />
                             </>
                         )
                     }
