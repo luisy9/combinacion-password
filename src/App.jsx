@@ -8,12 +8,15 @@ export const App = () => {
     let arrayButtonsSelected = [];
 
     function checkPassword(secret, index) {
-        // console.log(secret, index)
         //OK esto esta bien, pero me molaria hacerlo de otra manera!
-        if (!arrayButtonsSelected[index]) { arrayButtonsSelected.push({ [index]: true }) }
-        console.log(arrayButtonsSelected)
+        if (!arrayButtonsSelected[index]) {
+            arrayButtonsSelected.push({ [index]: true })
+        }
+        const arraySinDuplicados = arrayButtonsSelected;
 
-        // setColor([...color, { [index]: true }]);
+        /* Esto es para desestructurar el arraySinDuplicados, y mandar un 
+        nuevo array de el color para que se añada tambien al State */
+        setColor([...color, ...arraySinDuplicados]);
     }
 
     function confirmPassword() {
