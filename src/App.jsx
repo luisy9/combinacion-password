@@ -5,21 +5,22 @@ import Confirm from './components/Confirm';
 
 export const App = () => {
     const [color, setColor] = useState([]);
-    let arrayButtonsSelected = [];
+    const [toggle, setToggle] = useState([]);
+    const [objectToggles, setObjectToggles] = useState([]);
+    const [counter, setCounter] = useState(null);
 
-    function checkPassword(secret, index) {
-        //OK esto esta bien, pero me molaria hacerlo de otra manera!
-        if (!arrayButtonsSelected[index]) {
-            arrayButtonsSelected.push({ [index]: true })
+    function passObjectToggle(secret, index) {
+        //Logica para poder hacer un toggle de los boxes
+        if (counter != index) {
+            setToggle({ [index]: true });
+            setCounter(index);
+        } else {
+            setToggle({ [index]: false });
+            setCounter(null)
         }
-        const arraySinDuplicados = arrayButtonsSelected;
-
-        /* Esto es para desestructurar el arraySinDuplicados, y mandar un 
-        nuevo array de el color para que se añada tambien al State */
-        setColor([...color, ...arraySinDuplicados]);
     }
 
-    function confirmPassword() {
+    function confirmPassword(object) {
 
     }
 
@@ -33,7 +34,7 @@ export const App = () => {
                             <>
                                 <Buttons secret={e}
                                     index={index}
-                                    checkPassword={checkPassword} color={color} />
+                                    passObjectToggle={passObjectToggle} color={color} toggle={toggle} />
                             </>
                         )
                     }
