@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 export const Buttons = ({ secret, index, passObjectToggle, color, toggle }) => {
 
   let isClicked = 'blue';
