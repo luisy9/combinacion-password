@@ -6,7 +6,7 @@ import Confirm from './components/Confirm';
 export const App = () => {
     const [color, setColor] = useState([]);
     const [toggle, setToggle] = useState([]);
-    const [counter, setCounter] = useState(null);
+    const [actualBox, setActualBox] = useState({});
     const [arrayNormal, setArrayNormal] = useState([]);
 
     //Cada vez que cambia la variable toggle se disparar el useEffect
@@ -18,10 +18,9 @@ export const App = () => {
         //Logica para poder hacer un toggle de los boxes
         /* Codigo mejorado para llamar una vez el setToggle */
         setToggle(toggle => {
-            const newToggle = { [index]: !toggle[index] };
-            return newToggle;
+            return { [index]: !toggle[index] };
         })
-        
+
         /* Antiguo codigo que funcionaba pero se llamaba dos veces
         al setToggle() */
         // if (counter != index) {
@@ -34,11 +33,13 @@ export const App = () => {
     }
 
     function mountPasswordToBeChecked() {
-        console.log('holaaaaa')
-        // if(arrayNormal.length === 0){
-        setArrayNormal(arrayNormal => [...arrayNormal, toggle]);
-        console.log(arrayNormal)
-        // }
+        //Primero añadirlo al setArrayNormal
+        //Luego guardar el toggle en el setActualBox
+        /* Entonces la segunda vez que se clicke un box se comprobara si es el mismo box que esta en el actualBox que es el
+        ultimo añadido, y mirar si el indice es el mismo y luego si el valor es distinto se reemplazan, pero si el indice es distinto se añade
+        directamente, pero si el indice es igual y el valor igual no se añade nada o se podria remplazar tambien */
+        // setArrayNormal(arrayNormal => );
+
     }
 
     function confirmPassword(object) {
